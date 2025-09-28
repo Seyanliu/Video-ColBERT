@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+*.egg-info/
+dist/
+
+# PyTorch checkpoints
+*.pt
+*.pth
+
+# VSCode
+.vscode/
+
+# Mac
+.DS_Store

@@ -1,0 +1,134 @@
+[2025-09-28 21:03:34,214 tvr 123 INFO]: [Rank 0] Using GPU 0
+[2025-09-28 21:03:34,215 tvr 135 INFO]: Effective parameters:
+[2025-09-28 21:03:34,215 tvr 137 INFO]:   <<< agg_module: seqTransf
+[2025-09-28 21:03:34,215 tvr 137 INFO]:   <<< anno_path: /home/liusiyuan/MSR-VTT/anns
+[2025-09-28 21:03:34,215 tvr 137 INFO]:   <<< base_encoder: ViT-B/32
+[2025-09-28 21:03:34,215 tvr 137 INFO]:   <<< batch_size: 256
+[2025-09-28 21:03:34,215 tvr 137 INFO]:   <<< batch_size_val: 256
+[2025-09-28 21:03:34,215 tvr 137 INFO]:   <<< coef_lr: 0.001
+[2025-09-28 21:03:34,215 tvr 137 INFO]:   <<< datatype: msrvtt
+[2025-09-28 21:03:34,216 tvr 137 INFO]:   <<< device: cuda:0
+[2025-09-28 21:03:34,216 tvr 137 INFO]:   <<< distributed: 0
+[2025-09-28 21:03:34,216 tvr 137 INFO]:   <<< do_eval: 0
+[2025-09-28 21:03:34,216 tvr 137 INFO]:   <<< do_train: 4
+[2025-09-28 21:03:34,216 tvr 137 INFO]:   <<< epochs: 5
+[2025-09-28 21:03:34,216 tvr 137 INFO]:   <<< init_model: None
+[2025-09-28 21:03:34,216 tvr 137 INFO]:   <<< interaction: mms
+[2025-09-28 21:03:34,216 tvr 137 INFO]:   <<< lambda_f: 1.0
+[2025-09-28 21:03:34,216 tvr 137 INFO]:   <<< lambda_v: 1.0
+[2025-09-28 21:03:34,216 tvr 137 INFO]:   <<< local_rank: 0
+[2025-09-28 21:03:34,216 tvr 137 INFO]:   <<< lr: 0.0001
+[2025-09-28 21:03:34,217 tvr 137 INFO]:   <<< max_frames: 12
+[2025-09-28 21:03:34,217 tvr 137 INFO]:   <<< max_words: 32
+[2025-09-28 21:03:34,217 tvr 137 INFO]:   <<< n_display: 50
+[2025-09-28 21:03:34,217 tvr 137 INFO]:   <<< output_dir: ckpts/msrvtt_videocolbert
+[2025-09-28 21:03:34,217 tvr 137 INFO]:   <<< query_pad_length: 32
+[2025-09-28 21:03:34,217 tvr 137 INFO]:   <<< seed: 0
+[2025-09-28 21:03:34,217 tvr 137 INFO]:   <<< temporal_dropout: 0.1
+[2025-09-28 21:03:34,217 tvr 137 INFO]:   <<< temporal_ff_dim: 2048
+[2025-09-28 21:03:34,217 tvr 137 INFO]:   <<< temporal_heads: 8
+[2025-09-28 21:03:34,217 tvr 137 INFO]:   <<< temporal_layers: 4
+[2025-09-28 21:03:34,217 tvr 137 INFO]:   <<< use_query_expansion: True
+[2025-09-28 21:03:34,217 tvr 137 INFO]:   <<< video_framerate: 1
+[2025-09-28 21:03:34,217 tvr 137 INFO]:   <<< video_path: /home/liusiyuan/MSR-VTT/videos
+[2025-09-28 21:03:34,218 tvr 137 INFO]:   <<< visual_expansion_tokens: 2
+[2025-09-28 21:03:34,218 tvr 137 INFO]:   <<< warmup_proportion: 0.1
+[2025-09-28 21:03:34,218 tvr 137 INFO]:   <<< weight_decay: 0.01
+[2025-09-28 21:03:34,218 tvr 137 INFO]:   <<< workers: 8
+[2025-09-28 21:03:34,218 tvr 137 INFO]:   <<< world_size: 1
+[2025-09-28 21:30:58,383 tvr 123 INFO]: [Rank 0] Using GPU 0
+[2025-09-28 21:30:58,383 tvr 135 INFO]: Effective parameters:
+[2025-09-28 21:30:58,383 tvr 137 INFO]:   <<< agg_module: seqTransf
+[2025-09-28 21:30:58,383 tvr 137 INFO]:   <<< anno_path: /data/liusiyuan/dataset/MSRVTT/anns
+[2025-09-28 21:30:58,383 tvr 137 INFO]:   <<< base_encoder: ViT-B/32
+[2025-09-28 21:30:58,383 tvr 137 INFO]:   <<< batch_size: 256
+[2025-09-28 21:30:58,384 tvr 137 INFO]:   <<< batch_size_val: 256
+[2025-09-28 21:30:58,384 tvr 137 INFO]:   <<< coef_lr: 0.001
+[2025-09-28 21:30:58,384 tvr 137 INFO]:   <<< datatype: msrvtt
+[2025-09-28 21:30:58,384 tvr 137 INFO]:   <<< device: cuda:0
+[2025-09-28 21:30:58,384 tvr 137 INFO]:   <<< distributed: 0
+[2025-09-28 21:30:58,384 tvr 137 INFO]:   <<< do_eval: 0
+[2025-09-28 21:30:58,384 tvr 137 INFO]:   <<< do_train: 4
+[2025-09-28 21:30:58,384 tvr 137 INFO]:   <<< epochs: 5
+[2025-09-28 21:30:58,384 tvr 137 INFO]:   <<< init_model: None
+[2025-09-28 21:30:58,384 tvr 137 INFO]:   <<< interaction: mms
+[2025-09-28 21:30:58,384 tvr 137 INFO]:   <<< lambda_f: 1.0
+[2025-09-28 21:30:58,384 tvr 137 INFO]:   <<< lambda_v: 1.0
+[2025-09-28 21:30:58,385 tvr 137 INFO]:   <<< local_rank: 0
+[2025-09-28 21:30:58,385 tvr 137 INFO]:   <<< lr: 0.0001
+[2025-09-28 21:30:58,385 tvr 137 INFO]:   <<< max_frames: 12
+[2025-09-28 21:30:58,385 tvr 137 INFO]:   <<< max_words: 32
+[2025-09-28 21:30:58,385 tvr 137 INFO]:   <<< n_display: 50
+[2025-09-28 21:30:58,385 tvr 137 INFO]:   <<< output_dir: ckpts/msrvtt_videocolbert
+[2025-09-28 21:30:58,385 tvr 137 INFO]:   <<< query_pad_length: 32
+[2025-09-28 21:30:58,385 tvr 137 INFO]:   <<< seed: 0
+[2025-09-28 21:30:58,385 tvr 137 INFO]:   <<< temporal_dropout: 0.1
+[2025-09-28 21:30:58,385 tvr 137 INFO]:   <<< temporal_ff_dim: 2048
+[2025-09-28 21:30:58,385 tvr 137 INFO]:   <<< temporal_heads: 8
+[2025-09-28 21:30:58,385 tvr 137 INFO]:   <<< temporal_layers: 4
+[2025-09-28 21:30:58,385 tvr 137 INFO]:   <<< use_query_expansion: True
+[2025-09-28 21:30:58,386 tvr 137 INFO]:   <<< video_framerate: 1
+[2025-09-28 21:30:58,386 tvr 137 INFO]:   <<< video_path: /data/liusiyuan/dataset/MSRVTT/videos
+[2025-09-28 21:30:58,386 tvr 137 INFO]:   <<< visual_expansion_tokens: 2
+[2025-09-28 21:30:58,386 tvr 137 INFO]:   <<< warmup_proportion: 0.1
+[2025-09-28 21:30:58,386 tvr 137 INFO]:   <<< weight_decay: 0.01
+[2025-09-28 21:30:58,386 tvr 137 INFO]:   <<< workers: 8
+[2025-09-28 21:30:58,386 tvr 137 INFO]:   <<< world_size: 1
+[2025-09-28 21:31:03,951 tvr 177 INFO]: ***** Running test *****
+[2025-09-28 21:31:03,951 tvr 178 INFO]:   Num examples = 1000
+[2025-09-28 21:31:03,951 tvr 179 INFO]:   Batch size = 256
+[2025-09-28 21:31:03,951 tvr 180 INFO]:   Num steps = 4
+[2025-09-28 21:31:03,951 tvr 181 INFO]: ***** Running val *****
+[2025-09-28 21:31:03,951 tvr 182 INFO]:   Num examples = 1000
+[2025-09-28 21:31:10,927 tvr 193 INFO]: ***** Running training *****
+[2025-09-28 21:31:10,927 tvr 194 INFO]:   Num examples = 180000
+[2025-09-28 21:31:10,927 tvr 195 INFO]:   Batch size = 256
+[2025-09-28 21:31:10,928 tvr 196 INFO]:   Num steps = 3515
+[2025-09-28 21:40:37,153 tvr 123 INFO]: [Rank 0] Using GPU 0
+[2025-09-28 21:40:37,153 tvr 135 INFO]: Effective parameters:
+[2025-09-28 21:40:37,153 tvr 137 INFO]:   <<< agg_module: seqTransf
+[2025-09-28 21:40:37,153 tvr 137 INFO]:   <<< anno_path: /data/liusiyuan/dataset/MSRVTT/anns
+[2025-09-28 21:40:37,153 tvr 137 INFO]:   <<< base_encoder: ViT-B/32
+[2025-09-28 21:40:37,153 tvr 137 INFO]:   <<< batch_size: 256
+[2025-09-28 21:40:37,153 tvr 137 INFO]:   <<< batch_size_val: 256
+[2025-09-28 21:40:37,153 tvr 137 INFO]:   <<< coef_lr: 0.001
+[2025-09-28 21:40:37,154 tvr 137 INFO]:   <<< datatype: msrvtt
+[2025-09-28 21:40:37,154 tvr 137 INFO]:   <<< device: cuda:0
+[2025-09-28 21:40:37,154 tvr 137 INFO]:   <<< distributed: 0
+[2025-09-28 21:40:37,154 tvr 137 INFO]:   <<< do_eval: 0
+[2025-09-28 21:40:37,154 tvr 137 INFO]:   <<< do_train: 4
+[2025-09-28 21:40:37,154 tvr 137 INFO]:   <<< epochs: 5
+[2025-09-28 21:40:37,154 tvr 137 INFO]:   <<< init_model: None
+[2025-09-28 21:40:37,154 tvr 137 INFO]:   <<< interaction: mms
+[2025-09-28 21:40:37,154 tvr 137 INFO]:   <<< lambda_f: 1.0
+[2025-09-28 21:40:37,154 tvr 137 INFO]:   <<< lambda_v: 1.0
+[2025-09-28 21:40:37,154 tvr 137 INFO]:   <<< local_rank: 0
+[2025-09-28 21:40:37,154 tvr 137 INFO]:   <<< lr: 0.0001
+[2025-09-28 21:40:37,154 tvr 137 INFO]:   <<< max_frames: 12
+[2025-09-28 21:40:37,155 tvr 137 INFO]:   <<< max_words: 32
+[2025-09-28 21:40:37,155 tvr 137 INFO]:   <<< n_display: 50
+[2025-09-28 21:40:37,155 tvr 137 INFO]:   <<< output_dir: ckpts/msrvtt_videocolbert
+[2025-09-28 21:40:37,155 tvr 137 INFO]:   <<< query_pad_length: 32
+[2025-09-28 21:40:37,155 tvr 137 INFO]:   <<< seed: 0
+[2025-09-28 21:40:37,155 tvr 137 INFO]:   <<< temporal_dropout: 0.1
+[2025-09-28 21:40:37,155 tvr 137 INFO]:   <<< temporal_ff_dim: 2048
+[2025-09-28 21:40:37,155 tvr 137 INFO]:   <<< temporal_heads: 8
+[2025-09-28 21:40:37,155 tvr 137 INFO]:   <<< temporal_layers: 4
+[2025-09-28 21:40:37,155 tvr 137 INFO]:   <<< use_query_expansion: True
+[2025-09-28 21:40:37,155 tvr 137 INFO]:   <<< video_framerate: 1
+[2025-09-28 21:40:37,155 tvr 137 INFO]:   <<< video_path: /data/liusiyuan/dataset/MSRVTT/videos
+[2025-09-28 21:40:37,155 tvr 137 INFO]:   <<< visual_expansion_tokens: 2
+[2025-09-28 21:40:37,156 tvr 137 INFO]:   <<< warmup_proportion: 0.1
+[2025-09-28 21:40:37,156 tvr 137 INFO]:   <<< weight_decay: 0.01
+[2025-09-28 21:40:37,156 tvr 137 INFO]:   <<< workers: 8
+[2025-09-28 21:40:37,156 tvr 137 INFO]:   <<< world_size: 1
+[2025-09-28 21:40:42,310 tvr 177 INFO]: ***** Running test *****
+[2025-09-28 21:40:42,311 tvr 178 INFO]:   Num examples = 1000
+[2025-09-28 21:40:42,311 tvr 179 INFO]:   Batch size = 256
+[2025-09-28 21:40:42,311 tvr 180 INFO]:   Num steps = 4
+[2025-09-28 21:40:42,311 tvr 181 INFO]: ***** Running val *****
+[2025-09-28 21:40:42,311 tvr 182 INFO]:   Num examples = 1000
+[2025-09-28 21:40:49,170 tvr 193 INFO]: ***** Running training *****
+[2025-09-28 21:40:49,170 tvr 194 INFO]:   Num examples = 180000
+[2025-09-28 21:40:49,170 tvr 195 INFO]:   Batch size = 256
+[2025-09-28 21:40:49,170 tvr 196 INFO]:   Num steps = 3515

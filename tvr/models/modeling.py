@@ -4,8 +4,6 @@ import torch
 import torch.nn.functional as F
 from torch import nn
 
-from torch.nn.utils.rnn import pad_packed_sequence, pack_padded_sequence
-
 from .module_clip import CLIP, convert_weights, _PT_NAME
 from .module_cross import Transformer as TransformerClip
 from .until_module import LayerNorm, AllGather, AllGather2
@@ -30,14 +28,13 @@ class VideoColBERTLoss(nn.Module):
         self.lambda_f = lambda_f  # 帧级损失权重 λ_F
         self.lambda_v = lambda_v  # 视频级损失权重 λ_V
     def forward(self, mms_f, mms_v):
-
+        
         B = mms_f.size(0)
 
         # 构造标签矩阵 z: [B, B], 对角线=1, 其余=-1
         z = torch.ones_like(mms_f)
         z.fill_(-1.0)
         z.fill_diagonal_(1.0)
-        # print("z shape:", z.shape)   
 
         # L_F
         logits_f = -self.temperature * mms_f + self.bias   # [B, B]
@@ -106,6 +103,7 @@ class VideoColBERT(nn.Module):
         for param in self.clip.visual.conv1.parameters():
             param.requires_grad = False
         self.clip.visual.positional_embedding.requires_grad = False
+        self.clip.visual.class_embedding.requires_grad = False
 
         
         # VideoColBERT 相关参数
@@ -282,6 +280,10 @@ class VideoColBERT(nn.Module):
             frame_feat = allgather(frame_feat.contiguous(), self.config)
             video_feat = allgather(video_feat.contiguous(), self.config)
             torch.distributed.barrier()  # force sync
+            
+        text_feat = text_feat.float()
+        frame_feat = frame_feat.float()
+        video_feat = video_feat.float()
 
         # 1) 计算 text 与 frame 和 video 的成对相似度： sim_tv -> [B, B, L_t, L_v]
         sim_tv = torch.einsum('bqd,cvd->bcqv', text_feat, video_feat)  # bcqv

@@ -42,12 +42,12 @@ class VideoColBERTLoss(nn.Module):
         # L_F
         logits_f = -self.temperature * mms_f + self.bias   # [B, B]
         logits_f = logits_f * -1.0
-        loss_f = -torch.mean(F.logsigmoid(z * logits_f)) * B
+        loss_f = -torch.mean(F.logsigmoid(z * logits_f))
 
         # L_V
         logits_v = -self.temperature * mms_v + self.bias   # [B, B]
         logits_v = logits_v * -1.0
-        loss_v = -torch.mean(F.logsigmoid(z * logits_v)) * B
+        loss_v = -torch.mean(F.logsigmoid(z * logits_v))
 
         loss = loss_f * self.lambda_f + loss_v * self.lambda_v
 
@@ -282,10 +282,6 @@ class VideoColBERT(nn.Module):
             frame_feat = allgather(frame_feat.contiguous(), self.config)
             video_feat = allgather(video_feat.contiguous(), self.config)
             torch.distributed.barrier()  # force sync
-
-        text_feat = F.normalize(text_feat, p=2, dim=-1)
-        frame_feat = F.normalize(frame_feat, p=2, dim=-1)
-        video_feat = F.normalize(video_feat, p=2, dim=-1)
 
         # 1) 计算 text 与 frame 和 video 的成对相似度： sim_tv -> [B, B, L_t, L_v]
         sim_tv = torch.einsum('bqd,cvd->bcqv', text_feat, video_feat)  # bcqv

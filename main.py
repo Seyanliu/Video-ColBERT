@@ -17,7 +17,7 @@ import torch
 from tvr.models.tokenization_clip import SimpleTokenizer as ClipTokenizer
 from tvr.dataloaders.data_dataloaders import DATALOADER_DICT
 from tvr.models.modeling import VideoColBERT, AllGather
-from tvr.models.optimization import AdamW
+from tvr.models.optimization import AdamW, BertAdam
 from tvr.utils.metrics import compute_metrics, tensor_text_to_video_metrics, tensor_video_to_text_sim
 
 from tvr.utils.comm import is_main_process, synchronize
@@ -227,8 +227,8 @@ def prep_optimizer(args, model, num_train_optimization_steps, local_rank):
     ]
 
     scheduler = None
-    optimizer = AdamW(optimizer_grouped_parameters, lr=args.lr, warmup=warmup_proportion,
-                         schedule='warmup_linear', betas=(0.9, 0.98), eps=1e-6,
+    optimizer = BertAdam(optimizer_grouped_parameters, lr=args.lr, warmup=warmup_proportion,
+                         schedule='warmup_linear', b1=0.9, b2=0.98, e=1e-6,
                          t_total=num_train_optimization_steps, weight_decay=weight_decay,
                          max_grad_norm=1.0)
 

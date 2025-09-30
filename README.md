@@ -42,6 +42,14 @@ pip install -r requirements.txt
 1.  Download the MSR-VTT dataset (or any other dataset you wish to use).
 2.  Update the `anno_path` and `video_path` arguments in the training script to point to your dataset's annotations and video files.
 
+### Download CLIP Model (as pretraining)
+
+```cd tvr/models
+wget https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt
+# wget https://openaipublic.azureedge.net/clip/models/5806e77cd80f8b59890b7e101eabd078d9fb84e6937f9e85e4ecb61988df416f/ViT-B-16.pt
+# wget https://openaipublic.azureedge.net/clip/models/b8cca3fd41ae0c99ba7e8951adf17d267cdb84cd88be6f7c2e0eca1737a03836/ViT-L-14.pt
+```
+
 ### Training
 
 The `train.sh` script provides an example of how to launch a distributed training job.

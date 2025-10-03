@@ -4,8 +4,6 @@ import torch
 import torch.nn.functional as F
 from torch import nn
 
-from torch.nn.utils.rnn import pad_packed_sequence, pack_padded_sequence
-
 from .module_clip import CLIP, convert_weights, _PT_NAME
 from .module_cross import Transformer as TransformerClip
 from .until_module import LayerNorm, AllGather, AllGather2
@@ -106,6 +104,7 @@ class VideoColBERT(nn.Module):
         for param in self.clip.visual.conv1.parameters():
             param.requires_grad = False
         self.clip.visual.positional_embedding.requires_grad = False
+        self.clip.visual.class_embedding.requires_grad = False
 
         
         # VideoColBERT 相关参数
@@ -125,7 +124,8 @@ class VideoColBERT(nn.Module):
                 num_layers=self.temporal_layers,
                 dim_feedforward=self.temporal_ff_dim,
                 dropout=self.temporal_dropout,
-                num_visual_expansion_tokens=self.visual_expansion_tokens
+                num_visual_expansion_tokens=self.visual_expansion_tokens,
+                pretrained_text_state_dict=state_dict  # 传入CLIP的状态字典
             )
 
         # 可学习参数：温度缩放 & 偏置 (根据原论文设置)
@@ -145,7 +145,7 @@ class VideoColBERT(nn.Module):
             lambda_v=lambda_v
         )
 
-        self.apply(self.init_weights)  # random init must before loading pretrain
+        # self.apply(self.init_weights)  # random init must before loading pretrain
         self.clip.load_state_dict(state_dict, strict=False)
 
     def forward(self, text_ids, text_mask, video, video_mask=None):
@@ -226,8 +226,12 @@ class VideoColBERT(nn.Module):
             video = video.view(b * n_v, d, h, w)
 
         batch_size = video_mask.size(0)
+        num_frames = video_mask.size(1)
         image_feat = self.clip.encode_image(video).float()
         frame_feat = image_feat.float().view(batch_size, -1, image_feat.size(-1)) # [batch_size, num_frames, d_model]
+
+        video_mask = video_mask.unsqueeze(-1).float()  # [B, T, 1]，扩展维度以匹配frame_feat
+        frame_feat = frame_feat * video_mask  # [B, T, D]，无效帧特征置0
 
         video_feat = self.transformerClip(frame_feat)
 
@@ -283,8 +287,12 @@ class VideoColBERT(nn.Module):
             video_feat = allgather(video_feat.contiguous(), self.config)
             torch.distributed.barrier()  # force sync
 
+        text_feat = text_feat.float()
+        frame_feat = frame_feat.float()
+        video_feat = video_feat.float()
+
         # 1) 计算 text 与 frame 和 video 的成对相似度： sim_tv -> [B, B, L_t, L_v]
-        sim_tv = torch.einsum('bqd,cvd->bcqv', text_feat, video_feat)  # bcqv
+        sim_tv = torch.einsum('bqd,cvd->bcqv', text_feat, video_feat)
         sim_tf = torch.einsum('bqd,cfd->bcqf', text_feat, frame_feat)
 
         # 2) 对 video 和 frame 维度取 max -> [B, B, L_t] 再取 mean -> [B, B]
@@ -293,7 +301,7 @@ class VideoColBERT(nn.Module):
 
         # 3) MMS_FV = MMS_F + MMS_V
         retrieve_logits =  mms_f + mms_v  # [B, B]
-
+    
         return retrieve_logits, retrieve_logits.T, mms_f, mms_v
 
 

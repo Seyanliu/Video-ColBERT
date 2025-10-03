@@ -11,7 +11,6 @@ def dataloader_msrvtt_train(args, tokenizer):
         max_words=args.max_words,
         tokenizer=tokenizer,
         max_frames=args.max_frames,
-        video_framerate=args.video_framerate,
         config=args
     )
     try:
@@ -39,7 +38,6 @@ def dataloader_msrvtt_test(args, tokenizer, subset="test"):
         max_words=args.max_words,
         tokenizer=tokenizer,
         max_frames=args.max_frames,
-        video_framerate=args.video_framerate,
         config=args
     )
 

@@ -15,9 +15,9 @@ class MSRVTTDataset(RetrievalDataset):
     """MSRVTT dataset."""
 
     def __init__(self, subset, anno_path, video_path, tokenizer, max_words=32,
-                 max_frames=12, video_framerate=1, image_resolution=224, mode='all', config=None):
+                 max_frames=12, image_resolution=224, mode='all', config=None):
         super(MSRVTTDataset, self).__init__(subset, anno_path, video_path, tokenizer, max_words,
-                                            max_frames, video_framerate, image_resolution, mode, config=config)
+                                            max_frames, image_resolution, mode, config=config)
         pass
 
     def _get_anns(self, subset='train'):

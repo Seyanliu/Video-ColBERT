@@ -126,6 +126,8 @@ class VideoColBERT(nn.Module):
                 dropout=self.temporal_dropout,
                 num_visual_expansion_tokens=self.visual_expansion_tokens,
                 pretrained_text_state_dict=state_dict  # 传入CLIP的状态字典
+                num_visual_expansion_tokens=self.visual_expansion_tokens,
+                pretrained_text_state_dict=state_dict  # 传入CLIP的状态字典
             )
 
         # 可学习参数：温度缩放 & 偏置 (根据原论文设置)
@@ -145,6 +147,7 @@ class VideoColBERT(nn.Module):
             lambda_v=lambda_v
         )
 
+        # self.apply(self.init_weights)  # random init must before loading pretrain
         # self.apply(self.init_weights)  # random init must before loading pretrain
         self.clip.load_state_dict(state_dict, strict=False)
 
@@ -227,6 +230,7 @@ class VideoColBERT(nn.Module):
 
         batch_size = video_mask.size(0)
         num_frames = video_mask.size(1)
+        num_frames = video_mask.size(1)
         image_feat = self.clip.encode_image(video).float()
         frame_feat = image_feat.float().view(batch_size, -1, image_feat.size(-1)) # [batch_size, num_frames, d_model]
 
@@ -293,6 +297,7 @@ class VideoColBERT(nn.Module):
 
         # 1) 计算 text 与 frame 和 video 的成对相似度： sim_tv -> [B, B, L_t, L_v]
         sim_tv = torch.einsum('bqd,cvd->bcqv', text_feat, video_feat)
+        sim_tv = torch.einsum('bqd,cvd->bcqv', text_feat, video_feat)
         sim_tf = torch.einsum('bqd,cfd->bcqf', text_feat, frame_feat)
 
         # 2) 对 video 和 frame 维度取 max -> [B, B, L_t] 再取 mean -> [B, B]
@@ -301,6 +306,7 @@ class VideoColBERT(nn.Module):
 
         # 3) MMS_FV = MMS_F + MMS_V
         retrieve_logits =  mms_f + mms_v  # [B, B]
+    
     
         return retrieve_logits, retrieve_logits.T, mms_f, mms_v
 

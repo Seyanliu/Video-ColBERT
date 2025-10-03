@@ -126,8 +126,6 @@ class VideoColBERT(nn.Module):
                 dropout=self.temporal_dropout,
                 num_visual_expansion_tokens=self.visual_expansion_tokens,
                 pretrained_text_state_dict=state_dict  # 传入CLIP的状态字典
-                num_visual_expansion_tokens=self.visual_expansion_tokens,
-                pretrained_text_state_dict=state_dict  # 传入CLIP的状态字典
             )
 
         # 可学习参数：温度缩放 & 偏置 (根据原论文设置)

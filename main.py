@@ -53,7 +53,6 @@ def get_args(description='Disentangled Representation Learning for Text-Video Re
 
     parser.add_argument('--max_words', type=int, default=32, help='max text token number')
     parser.add_argument('--max_frames', type=int, default=12, help='max key frames')
-    parser.add_argument('--video_framerate', type=int, default=1, help='framerate to sample video frame')
 
     parser.add_argument("--device", default='cpu', type=str, help="cpu/cuda")
     parser.add_argument("--world_size", default=1, type=int, help="distributed training")

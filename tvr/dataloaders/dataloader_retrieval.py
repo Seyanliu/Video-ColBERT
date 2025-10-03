@@ -30,7 +30,6 @@ class RetrievalDataset(Dataset):
             tokenizer,
             max_words=30,
             max_frames=12,
-            video_framerate=1,
             image_resolution=224,
             mode='all',
             config=None
@@ -41,7 +40,6 @@ class RetrievalDataset(Dataset):
         self.tokenizer = tokenizer
         self.max_words = max_words
         self.max_frames = max_frames  # TSN采样的目标帧数
-        self.video_framerate = video_framerate
         self.image_resolution = image_resolution  # 224x224
         self.mode = mode  # all/text/vision
         self.config = config
@@ -55,7 +53,7 @@ class RetrievalDataset(Dataset):
         print("Total Pairs: {}".format(len(self.sentences_dict)))
 
         from .rawvideo_util import RawVideoExtractor
-        self.rawVideoExtractor = RawVideoExtractor(framerate=video_framerate, size=image_resolution)
+        self.rawVideoExtractor = RawVideoExtractor(size=image_resolution)
         
         # 关键修改：移除CenterCrop，仅进行Resize而不保持纵横比
         self.transform = Compose([

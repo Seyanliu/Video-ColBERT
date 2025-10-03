@@ -53,6 +53,9 @@ def get_args(description='Disentangled Representation Learning for Text-Video Re
 
     parser.add_argument('--max_words', type=int, default=32, help='max text token number')
     parser.add_argument('--max_frames', type=int, default=12, help='max key frames')
+    parser.add_argument('--max_words', type=int, default=32, help='max text token number')
+    parser.add_argument('--max_frames', type=int, default=12, help='max key frames')
+    parser.add_argument('--video_framerate', type=int, default=1, help='framerate to sample video frame')
 
     parser.add_argument("--device", default='cpu', type=str, help="cpu/cuda")
     parser.add_argument("--world_size", default=1, type=int, help="distributed training")
@@ -203,7 +206,7 @@ def prep_optimizer(args, model, num_train_optimization_steps, local_rank):
     ]
 
     scheduler = None
-    optimizer = AdamW(optimizer_grouped_parameters, lr=0.01, warmup=warmup_proportion,
+    optimizer = AdamW(optimizer_grouped_parameters, warmup=warmup_proportion,
                          schedule='warmup_linear', b1=0.9, b2=0.98, e=1e-6,
                          t_total=num_train_optimization_steps, weight_decay=weight_decay,
                          max_grad_norm=1.0)

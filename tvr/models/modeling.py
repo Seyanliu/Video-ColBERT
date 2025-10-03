@@ -28,14 +28,13 @@ class VideoColBERTLoss(nn.Module):
         self.lambda_f = lambda_f  # 帧级损失权重 λ_F
         self.lambda_v = lambda_v  # 视频级损失权重 λ_V
     def forward(self, mms_f, mms_v):
-
+        
         B = mms_f.size(0)
 
         # 构造标签矩阵 z: [B, B], 对角线=1, 其余=-1
         z = torch.ones_like(mms_f)
         z.fill_(-1.0)
         z.fill_diagonal_(1.0)
-        # print("z shape:", z.shape)   
 
         # L_F
         logits_f = -self.temperature * mms_f + self.bias   # [B, B]
@@ -286,6 +285,10 @@ class VideoColBERT(nn.Module):
             frame_feat = allgather(frame_feat.contiguous(), self.config)
             video_feat = allgather(video_feat.contiguous(), self.config)
             torch.distributed.barrier()  # force sync
+            
+        text_feat = text_feat.float()
+        frame_feat = frame_feat.float()
+        video_feat = video_feat.float()
 
         text_feat = text_feat.float()
         frame_feat = frame_feat.float()
